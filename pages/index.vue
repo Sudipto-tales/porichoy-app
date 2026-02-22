@@ -15,10 +15,10 @@
                 </div>
             </div>
 
-            <button
+            <NuxtLink to="/comming_soon"
                 class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-800 transition-all">
                 Join Beta
-            </button>
+            </NuxtLink>
         </nav>
 
         <main
@@ -39,7 +39,7 @@
                 <p class="text-gray-500 text-lg max-w-sm mx-auto lg:mx-0 leading-relaxed font-medium">
                     The elite workspace to build your professional portfolio and CV.
                     <span
-                        class="text-black underline decoration-yellow-400 decoration-2 underline-offset-4">Porichoy</span>
+                        class="text-black underline decoration-yellow-400 decoration-2 underline-offset-4">{{ config.public.appName }}</span>
                     is identity, redefined.
                 </p>
 
@@ -86,7 +86,7 @@
                 <a href="#" class="hover:text-black transition-colors">X</a>
                 <a href="#" class="hover:text-black transition-colors">Instagram</a>
             </div>
-            <p class="text-black py-4 md:py-0">© 2026 Porichoy Studios</p>
+            <p class="text-black py-4 md:py-0">© {{ new Date().getFullYear() }} {{ config.public.appName }} Studios</p>
             <div class="flex gap-8">
                 <a href="#" class="hover:text-black transition-colors">Legal</a>
                 <a href="#" class="hover:text-black transition-colors">Privacy</a>
@@ -99,25 +99,57 @@
 <script setup>
 import { ref } from 'vue'
 
+const config = useRuntimeConfig()
+
 useSeoMeta({
-    title: 'Porichoy - Craft Your Professional Identity',
+    title: `${config.public.appName} - Craft Your Professional Identity`,
     description: 'Join the elite workspace to build your professional portfolio and CV. Porichoy is identity, redefined.',
-    ogTitle: 'Porichoy - Craft Your Professional Identity',
+    ogTitle: `${config.public.appName} - Craft Your Professional Identity`,
     ogDescription: 'Join the elite workspace to build your professional portfolio and CV. Porichoy is identity, redefined.',
     ogImage: '/porichoy.og-image.png',
 })
 // SEO and Icons
 useHead({
-    link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/porichoy.favicon.png' },
-        { rel: 'stylesheet', href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' }
-    ],
+  meta: [
+    {
+      name: 'google-site-verification',
+      content: config.public.googleVerification
+    }
+  ],
+  link: [
+    {
+      rel: 'icon',
+      type: 'image/png',
+      href: '/porichoy.favicon.png'
+    },
+    {
+      rel: 'stylesheet',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+    }
+  ]
 })
 
 const email = ref('')
-const handleSubmit = () => {
-    alert('Welcome to the Porichoy inner circle!')
-    email.value = ''
+const isSubmitting = ref(false)
+const handleSubmit = async () => {
+    if (!email.value) return;
+    
+    isSubmitting.value = true;
+    
+    try {
+        // Correct way: Send data TO the server API
+        await $fetch('/api/subscribe', {
+            method: 'POST',
+            body: { email: email.value }
+        });
+
+        alert('Welcome to the Porichoy inner circle!');
+        email.value = '';
+    } catch (error) {
+        alert('Subscription failed. Please check your connection.');
+    } finally {
+        isSubmitting.value = false;
+    }
 }
 </script>
 

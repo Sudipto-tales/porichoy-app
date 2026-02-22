@@ -4,5 +4,16 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [
     '@nuxtjs/tailwindcss'
-  ]
+  ],
+  runtimeConfig: {
+    mailHost: '',
+    mailPort: '',
+    mailUser: '',
+    mailPass: '',
+    public: {
+      appName: '',
+
+      googleVerification: ''
+    }
+  }
 })

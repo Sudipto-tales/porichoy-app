@@ -13,7 +13,8 @@ export default defineNuxtConfig({
     public: {
       appName: '',
 
-      googleVerification: ''
+      googleVerification: '',
+      googleSiteVerification: '',
     }
   }
 })

@@ -155,7 +155,7 @@ useHead({
   meta: [
     {
       name: 'google-site-verification',
-      content: config.public.googleVerification
+      content: config.public.googleSiteVerification
     }
   ],
   link: [

@@ -2,27 +2,10 @@
     <div
         class="relative h-screen flex flex-col bg-[#FDFDFD] text-[#1A1A1A] font-sans overflow-x-hidden overflow-y-auto lg:overflow-hidden">
 
-        <nav class="relative z-30 flex justify-between items-center px-6 py-6 lg:px-16 flex-shrink-0">
-            <div class="flex items-center gap-2">
-                <img src="/porichoy.favicon.png" alt="Porichoy Logo" class="w-10 h-10 md:w-10 md:h-10 object-contain" />
-                <div class="flex items-center gap-1 group cursor-pointer">
-                    <span class="text-xl font-black uppercase tracking-tighter">Porich</span>
-
-                    <img src="/security.png" alt="Identity Icon"
-                        class="w-5 h-5 md:w-6 md:h-6 object-contain inline-block -mt-1 transform group-hover:rotate-12 transition-transform" />
-
-                    <span class="text-xl font-black uppercase tracking-tighter">y</span>
-                </div>
-            </div>
-
-            <NuxtLink to="/comming_soon"
-                class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-800 transition-all">
-                Join Beta
-            </NuxtLink>
-        </nav>
+        <Nav :betaButton="true" />
 
         <main
-            class="relative z-10 flex-grow flex flex-col lg:flex-row items-center justify-between px-6 lg:px-16 pb-10 lg:pb-0">
+            class="relative z-10 flex-grow flex flex-col lg:flex-row items-center justify-between pb-10 lg:pb-0">
 
             <div class="w-full lg:w-1/2 space-y-6 text-center lg:text-left lg:pr-10">
                 <div
@@ -79,25 +62,15 @@
             </div>
         </main>
 
-        <footer
-            class="relative z-30 p-8 lg:px-16 flex flex-col md:flex-row justify-between items-center text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] border-t border-gray-50 flex-shrink-0">
-            <div class="flex gap-8">
-                <a href="#" class="hover:text-black transition-colors">Facebook</a>
-                <a href="#" class="hover:text-black transition-colors">X</a>
-                <a href="#" class="hover:text-black transition-colors">Instagram</a>
-            </div>
-            <p class="text-black py-4 md:py-0">© {{ new Date().getFullYear() }} {{ config.public.appName }} Studios</p>
-            <div class="flex gap-8">
-                <a href="#" class="hover:text-black transition-colors">Legal</a>
-                <a href="#" class="hover:text-black transition-colors">Privacy</a>
-            </div>
-        </footer>
+        <Footer />
 
     </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
+import Nav from '~/components/nav.vue'
+import Footer from '~/components/footer.vue'
 
 const config = useRuntimeConfig()
 

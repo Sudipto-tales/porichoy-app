@@ -1,11 +1,11 @@
 <template>
-    <div
-        class="relative h-screen flex flex-col bg-[#FDFDFD] text-[#1A1A1A] font-sans overflow-x-hidden overflow-y-auto lg:overflow-hidden">
+    <div class="relative h-screen flex flex-col bg-[#FDFDFD] text-[#1A1A1A] font-sans 
+         overflow-x-hidden overflow-y-auto lg:overflow-hidden
+         px-6 md:px-12 lg:px-20">
 
         <Nav :betaButton="true" />
 
-        <main
-            class="relative z-10 flex-grow flex flex-col lg:flex-row items-center justify-between pb-10 lg:pb-0">
+        <main class="relative z-10 flex-grow flex flex-col lg:flex-row items-center justify-between pb-10 lg:pb-0">
 
             <div class="w-full lg:w-1/2 space-y-6 text-center lg:text-left lg:pr-10">
                 <div
@@ -21,8 +21,8 @@
 
                 <p class="text-gray-500 text-lg max-w-sm mx-auto lg:mx-0 leading-relaxed font-medium">
                     The elite workspace to build your professional portfolio and CV.
-                    <span
-                        class="text-black underline decoration-yellow-400 decoration-2 underline-offset-4">{{ config.public.appName }}</span>
+                    <span class="text-black underline decoration-yellow-400 decoration-2 underline-offset-4">{{
+                        config.public.appName }}</span>
                     is identity, redefined.
                 </p>
 
@@ -83,32 +83,32 @@ useSeoMeta({
 })
 // SEO and Icons
 useHead({
-  meta: [
-    {
-      name: 'google-site-verification',
-      content: config.public.googleSiteVerification
-    }
-  ],
-  link: [
-    {
-      rel: 'icon',
-      type: 'image/png',
-      href: '/porichoy.favicon.png'
-    },
-    {
-      rel: 'stylesheet',
-      href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
-    }
-  ]
+    meta: [
+        {
+            name: 'google-site-verification',
+            content: config.public.googleSiteVerification
+        }
+    ],
+    link: [
+        {
+            rel: 'icon',
+            type: 'image/png',
+            href: '/porichoy.favicon.png'
+        },
+        {
+            rel: 'stylesheet',
+            href: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
+        }
+    ]
 })
 
 const email = ref('')
 const isSubmitting = ref(false)
 const handleSubmit = async () => {
     if (!email.value) return;
-    
+
     isSubmitting.value = true;
-    
+
     try {
         // Correct way: Send data TO the server API
         await $fetch('/api/subscribe', {

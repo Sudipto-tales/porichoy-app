@@ -1,0 +1,153 @@
+:root {
+    --bg: #ffffff;
+    --text: #121212;
+    --accent: #ff3e00;
+    --muted: #777;
+    --border: #eeeeee;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background-color: #f0f0f0;
+    font-family: 'Lexend', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 40px 0;
+}
+
+.a4-page {
+    width: 210mm;
+    height: 297mm;
+    background: var(--bg);
+    padding: 15mm 18mm; /* Balanced internal padding */
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.hero {
+    padding: 20px 0 10px 0;
+    border-bottom: 3px solid var(--text);
+    margin-bottom: 20px;
+}
+/* 
+.divider {
+    width: 100%;
+    height: 1px;
+    background: #e5e5e5;
+    margin: 20px 0;
+} */
+
+.contact-grid {
+    display: flex;
+    margin-top: 15px;
+    gap: 30px;
+    flex-wrap: wrap;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.name-block h1 {
+    font-size: 3.2rem;
+    font-weight: 800;
+    letter-spacing: -2px;
+    white-space: nowrap;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: 1.6fr 1fr;
+    gap: 50px; /* Stronger vertical gap between columns */
+    flex-grow: 1;
+}
+
+.section-group {
+    margin-bottom: 40px; /* Proper gaping between sections */
+}
+
+.section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 20px;
+    letter-spacing: 2px;
+}
+
+.entry {
+    margin-bottom: 25px;
+}
+
+.entry-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4px;
+}
+
+.tag {
+    font-size: 0.6rem;
+    background: var(--text);
+    color: #fff;
+    padding: 2px 8px;
+    margin-left: 10px;
+}
+
+.mono-date {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+}
+
+.role {
+    font-weight: 600;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+}
+
+.desc {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.skill-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.skill-cloud span {
+    border: 1px solid #ddd;
+    padding: 5px 12px;
+    font-size: 0.8rem;
+    border-radius: 2px;
+}
+
+.a4-footer {
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+    margin-top: auto;
+    text-align: center;
+}
+
+.print-fab {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 5px 15px rgba(255, 62, 0, 0.3);
+}
+
+@media print {
+    body { background: none; padding: 0; }
+    .a4-page { margin: 0; box-shadow: none; }
+    .print-fab { display: none; }
+}

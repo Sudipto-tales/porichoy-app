@@ -8,7 +8,7 @@
         @click="activeFilter = item.label"
         @mouseenter="hoveredItem = item.label"
         @mouseleave="hoveredItem = null"
-        class="group flex flex-col items-center gap-2 min-w-[85px] transition-all"
+        class="group flex flex-col items-center gap-2 min-w-[85px] py-3 transition-all"
       >
         
         <div
@@ -53,13 +53,13 @@ const activeFilter = ref('Presentation')
 const hoveredItem = ref(null) // Track hover state manually for reliability
 
 const filters = [
-  { label: 'Present', icon: 'fa-regular fa-display', activeIcon: 'fa-solid fa-display' },
+  { label: 'Present', icon: 'fa-solid fa-tv', activeIcon: 'fa-solid fa-laptop' },
   { label: 'Social', icon: 'fa-regular fa-share-from-square', activeIcon: 'fa-solid fa-share-nodes' },
   { label: 'Resumes', icon: 'fa-regular fa-file', activeIcon: 'fa-solid fa-file-lines' },
-  { label: 'Portfolio', icon: 'fa-regular fa-briefcase', activeIcon: 'fa-solid fa-briefcase' },
-  { label: 'Crop', icon: 'fa-regular fa-crop', activeIcon: 'fa-solid fa-crop' },
+  { label: 'Portfolio', icon: 'fa-solid fa-address-card', activeIcon: 'fa-solid fa-briefcase' },
+  { label: 'Crop', icon: 'fa-solid fa-crop-simple', activeIcon: 'fa-solid fa-crop' },
   { label: 'Remove BG', icon: 'fa-regular fa-user', activeIcon: 'fa-solid fa-user-minus' },
-  { label: 'Templates', icon: 'fa-regular fa-layer-group', activeIcon: 'fa-solid fa-layer-group' },
+  { label: 'Templates', icon: 'fa-solid fa-object-group', activeIcon: 'fa-solid fa-layer-group' },
 ]
 </script>
 

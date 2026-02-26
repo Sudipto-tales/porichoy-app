@@ -23,33 +23,67 @@
             <Welcome />
           </section>
 
-          <section
-            class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <div
-              class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer">
-              <div
-                class="h-10 w-10 rounded-xl bg-blue-500 flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
-                <i class="fas fa-plus"></i>
+          <!-- Quick Actions -->
+          <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <NuxtLink to="/my-space"
+              class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer flex items-center gap-4">
+              <div class="h-10 w-10 rounded-xl bg-blue-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform shrink-0">
+                <i class="fas fa-layer-group"></i>
               </div>
-              <h3 class="font-bold text-gray-800">New Design</h3>
-              <p class="text-sm text-gray-500">Start a fresh project from scratch</p>
-            </div>
-            <div
-              class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer">
-              <div
-                class="h-10 w-10 rounded-xl bg-purple-500 flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+              <div>
+                <h3 class="font-bold text-gray-800">My Space</h3>
+                <p class="text-sm text-gray-500">View your generated CVs & portfolios</p>
+              </div>
+            </NuxtLink>
+            <div class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer flex items-center gap-4">
+              <div class="h-10 w-10 rounded-xl bg-purple-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform shrink-0">
                 <i class="fas fa-bolt"></i>
               </div>
-              <h3 class="font-bold text-gray-800">AI Generator</h3>
-              <p class="text-sm text-gray-500">Generate a resume with Porichoy AI</p>
+              <div>
+                <h3 class="font-bold text-gray-800">AI Generator</h3>
+                <p class="text-sm text-gray-500">Generate a resume with Porichoy AI</p>
+              </div>
             </div>
-            <div
-              class="p-6 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-800 shadow-lg group cursor-pointer">
-              <div class="h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-4">
+            <div class="p-6 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-800 shadow-lg group cursor-pointer flex items-center gap-4">
+              <div class="h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center text-white shrink-0">
                 <i class="fas fa-crown text-yellow-400"></i>
               </div>
-              <h3 class="font-bold text-white">{{ config.public.appName }} Pro</h3>
-              <p class="text-sm text-gray-400">Unlock premium college templates</p>
+              <div>
+                <h3 class="font-bold text-white">{{ config.public.appName }} Pro</h3>
+                <p class="text-sm text-gray-400">Unlock premium templates</p>
+              </div>
+            </div>
+          </section>
+
+          <!-- Featured Templates -->
+          <section class="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <div class="flex items-center justify-between mb-5">
+              <h2 class="text-base font-bold text-gray-800 uppercase tracking-widest">Featured Templates</h2>
+              <span class="text-xs text-gray-400 font-medium">Click to preview</span>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <NuxtLink
+                v-for="(item, i) in featuredTemplates"
+                :key="i"
+                :to="`/template/${item.id}`"
+                class="group relative rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer bg-white"
+              >
+                <div :class="['relative overflow-hidden', item.type === 'resume' ? 'aspect-[3/4]' : 'aspect-[4/3]']">
+                  <img :src="item.src" :alt="item.label" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                    <span class="text-white text-xs font-bold uppercase tracking-wider">Preview</span>
+                  </div>
+                  <div class="absolute top-2 right-2">
+                    <span :class="['text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full', item.type === 'resume' ? 'bg-blue-500 text-white' : 'bg-purple-500 text-white']">
+                      {{ item.type }}
+                    </span>
+                  </div>
+                </div>
+                <div class="p-3">
+                  <p class="text-xs font-bold text-gray-800 truncate">{{ item.label }}</p>
+                  <p class="text-[10px] text-gray-400 mt-0.5">{{ item.subtitle }}</p>
+                </div>
+              </NuxtLink>
             </div>
           </section>
 
@@ -86,6 +120,13 @@ import Welcome from '~/components/dash/welcome.vue'
 import sideBar from '~/components/sideBar.vue';
 import SearchBar from '~/components/ui/searchBar.vue';
 import filterIcons from '~/components/dash/filterIcons.vue';
+
+const featuredTemplates = [
+  { id: 'minimal-clean', label: 'Minimal Clean', subtitle: 'Resume • A4', type: 'resume', src: 'https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=400&h=560&fit=crop' },
+  { id: 'bold-creative', label: 'Bold Creative', subtitle: 'Resume • A4', type: 'resume', src: 'https://images.unsplash.com/photo-1626785774573-4b799315345d?w=400&h=560&fit=crop' },
+  { id: 'design-folio', label: 'Design Folio', subtitle: 'Portfolio • Web', type: 'portfolio', src: 'https://images.unsplash.com/photo-1558655146-9f40138edfeb?w=400&h=300&fit=crop' },
+  { id: 'web-showcase', label: 'Web Showcase', subtitle: 'Portfolio • Web', type: 'portfolio', src: 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=400&h=300&fit=crop' },
+]
 
 const categories = [
   {

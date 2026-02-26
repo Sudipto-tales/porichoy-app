@@ -32,9 +32,10 @@
     <!-- Navigation -->
     <nav class="flex flex-row lg:flex-col flex-1 justify-around lg:justify-start lg:px-3 lg:py-6 gap-2 w-full">
 
-      <SidebarItem label="Home" icon="fa-solid fa-house" :expanded="isExpanded || isHovered" active />
-      <SidebarItem label="Resumes" icon="fa-solid fa-file-lines" :expanded="isExpanded || isHovered" />
-      <SidebarItem label="Portfolios" icon="fa-solid fa-palette" :expanded="isExpanded || isHovered" />
+      <SidebarItem label="Home" icon="fa-solid fa-house" :expanded="isExpanded || isHovered" to="/dashboard" />
+      <SidebarItem label="My Space" icon="fa-solid fa-layer-group" :expanded="isExpanded || isHovered" to="/my-space" />
+      <SidebarItem label="Resumes" icon="fa-solid fa-file-lines" :expanded="isExpanded || isHovered" to="/dashboard" />
+      <SidebarItem label="Portfolios" icon="fa-solid fa-palette" :expanded="isExpanded || isHovered" to="/dashboard" />
       <SidebarItem label="Saved" icon="fa-solid fa-star" :expanded="isExpanded || isHovered" />
 
       <div class="hidden lg:block my-6 border-t border-slate-100"></div>

@@ -1,9 +1,10 @@
 <template>
   <div class="flex gap-6 overflow-x-auto pb-6 no-scrollbar scroll-smooth">
 
-    <div
+    <NuxtLink
       v-for="(item, index) in items"
       :key="index"
+      :to="item.id ? `/template/${item.id}` : '#'"
       class="relative flex-shrink-0 rounded-2xl overflow-hidden group cursor-pointer transition-all duration-300 hover:shadow-2xl"
       :class="getCardSize(index)"
     >
@@ -50,7 +51,7 @@
         <p v-if="item.subtitle" class="text-white/70 text-[11px]">{{ item.subtitle }}</p>
       </div>
 
-    </div>
+    </NuxtLink>
 
   </div>
 </template>

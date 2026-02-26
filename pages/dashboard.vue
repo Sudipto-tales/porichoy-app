@@ -12,7 +12,45 @@
         <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-8">
 
           <section class="mb-10 animate-in fade-in slide-in-from-top-4 duration-700">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-4">
+              <span class="relative flex h-2 w-2">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+              </span>
+              <span class="text-[10px] font-bold uppercase tracking-widest text-blue-600">Beta Testing</span>
+            </div>
             <Welcome />
+          </section>
+
+          <section
+            class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+            <div
+              class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer">
+              <div
+                class="h-10 w-10 rounded-xl bg-blue-500 flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+                <i class="fas fa-plus"></i>
+              </div>
+              <h3 class="font-bold text-gray-800">New Design</h3>
+              <p class="text-sm text-gray-500">Start a fresh project from scratch</p>
+            </div>
+            <div
+              class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer">
+              <div
+                class="h-10 w-10 rounded-xl bg-purple-500 flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3 class="font-bold text-gray-800">AI Generator</h3>
+              <p class="text-sm text-gray-500">Generate a resume with Porichoy AI</p>
+            </div>
+            <div
+              class="p-6 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-800 shadow-lg group cursor-pointer">
+              <div class="h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center text-white mb-4">
+                <i class="fas fa-crown text-yellow-400"></i>
+              </div>
+              <h3 class="font-bold text-white">{{ config.public.appName }} Pro</h3>
+              <p class="text-sm text-gray-400">Unlock premium college templates</p>
+            </div>
           </section>
 
           <section class="sticky top-0 z-30 transparent py-4 space-y-6 px-2 -mx-2 transition-all duration-300">
@@ -31,13 +69,8 @@
           </div>
 
           <div class="space-y-16 pb-20 -mx-6 lg:-mx-12">
-            <DashboardRow
-              v-for="category in categories"
-              :key="category.title"
-              :title="category.title"
-              :layout="category.layout"
-              :items="category.items"
-            />
+            <DashboardRow v-for="category in categories" :key="category.title" :title="category.title"
+              :layout="category.layout" :items="category.items" />
           </div>
 
         </div>

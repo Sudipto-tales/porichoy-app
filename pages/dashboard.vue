@@ -1,123 +1,117 @@
 <template>
-  <div class="h-screen w-full bg-[#f8f9fc] flex flex-col overflow-hidden font-sans selection:bg-blue-100">
+  <main class="flex-1 overflow-y-auto scroll-smooth custom-scrollbar">
 
-    <Nav class="z-50 bg-white/80 backdrop-blur-md border-b border-gray-100"
-      :profile="{ name: 'Sudipta', avatar: '/porichoy.favicon.png' }" />
+    <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-8">
 
-    <div class="flex flex-1 overflow-hidden relative">
-      <sideBar class="z-40 border-r border-gray-100 bg-white" />
-
-      <main class="flex-1 overflow-y-auto scroll-smooth custom-scrollbar">
-
-        <div class="max-w-[1600px] mx-auto px-6 lg:px-12 py-8">
-
-          <section class="mb-10 animate-in fade-in slide-in-from-top-4 duration-700">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-4">
-              <span class="relative flex h-2 w-2">
-                <span
-                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-              </span>
-              <span class="text-[10px] font-bold uppercase tracking-widest text-blue-600">Beta Testing</span>
-            </div>
-            <Welcome />
-          </section>
-
-          <!-- Quick Actions -->
-          <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <NuxtLink to="/my-space"
-              class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer flex items-center gap-4">
-              <div class="h-10 w-10 rounded-xl bg-blue-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform shrink-0">
-                <i class="fas fa-layer-group"></i>
-              </div>
-              <div>
-                <h3 class="font-bold text-gray-800">My Space</h3>
-                <p class="text-sm text-gray-500">View your generated CVs & portfolios</p>
-              </div>
-            </NuxtLink>
-            <div class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer flex items-center gap-4">
-              <div class="h-10 w-10 rounded-xl bg-purple-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform shrink-0">
-                <i class="fas fa-bolt"></i>
-              </div>
-              <div>
-                <h3 class="font-bold text-gray-800">AI Generator</h3>
-                <p class="text-sm text-gray-500">Generate a resume with Porichoy AI</p>
-              </div>
-            </div>
-            <div class="p-6 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-800 shadow-lg group cursor-pointer flex items-center gap-4">
-              <div class="h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center text-white shrink-0">
-                <i class="fas fa-crown text-yellow-400"></i>
-              </div>
-              <div>
-                <h3 class="font-bold text-white">{{ config.public.appName }} Pro</h3>
-                <p class="text-sm text-gray-400">Unlock premium templates</p>
-              </div>
-            </div>
-          </section>
-
-          <!-- Featured Templates -->
-          <section class="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
-            <div class="flex items-center justify-between mb-5">
-              <h2 class="text-base font-bold text-gray-800 uppercase tracking-widest">Featured Templates</h2>
-              <span class="text-xs text-gray-400 font-medium">Click to preview</span>
-            </div>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-              <NuxtLink
-                v-for="(item, i) in featuredTemplates"
-                :key="i"
-                :to="`/template/${item.id}`"
-                class="group relative rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer bg-white"
-              >
-                <div :class="['relative overflow-hidden', item.type === 'resume' ? 'aspect-[3/4]' : 'aspect-[4/3]']">
-                  <img :src="item.src" :alt="item.label" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
-                    <span class="text-white text-xs font-bold uppercase tracking-wider">Preview</span>
-                  </div>
-                  <div class="absolute top-2 right-2">
-                    <span :class="['text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full', item.type === 'resume' ? 'bg-blue-500 text-white' : 'bg-purple-500 text-white']">
-                      {{ item.type }}
-                    </span>
-                  </div>
-                </div>
-                <div class="p-3">
-                  <p class="text-xs font-bold text-gray-800 truncate">{{ item.label }}</p>
-                  <p class="text-[10px] text-gray-400 mt-0.5">{{ item.subtitle }}</p>
-                </div>
-              </NuxtLink>
-            </div>
-          </section>
-
-          <section class="sticky top-0 z-30 transparent py-4 space-y-6 px-2 -mx-2 transition-all duration-300">
-
-            <div class="flex flex-col md:flex-row md:items-center gap-4">
-              <div class="flex-1">
-                <SearchBar />
-              </div>
-            </div>
-
-          </section>
-
-
-          <div class="relative">
-            <filterIcons />
-          </div>
-
-          <div class="space-y-16 pb-20 -mx-6 lg:-mx-12">
-            <DashboardRow v-for="category in categories" :key="category.title" :title="category.title"
-              :layout="category.layout" :items="category.items" />
-          </div>
-
+      <section class="mb-10 animate-in fade-in slide-in-from-top-4 duration-700">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 mb-4">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+          </span>
+          <span class="text-[10px] font-bold uppercase tracking-widest text-blue-600">Beta Testing</span>
         </div>
-      </main>
+        <Welcome />
+      </section>
+
+      <!-- Quick Actions -->
+      <section
+        class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+        <NuxtLink to="/my-space"
+          class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer flex items-center gap-4">
+          <div
+            class="h-10 w-10 rounded-xl bg-blue-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform shrink-0">
+            <i class="fas fa-layer-group"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-800">My Space</h3>
+            <p class="text-sm text-gray-500">View your generated CVs & portfolios</p>
+          </div>
+        </NuxtLink>
+        <div
+          class="p-6 rounded-3xl bg-white border border-gray-100 shadow-sm hover:shadow-md transition-all group cursor-pointer flex items-center gap-4">
+          <div
+            class="h-10 w-10 rounded-xl bg-purple-500 flex items-center justify-center text-white group-hover:scale-110 transition-transform shrink-0">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-gray-800">AI Generator</h3>
+            <p class="text-sm text-gray-500">Generate a resume with Porichoy AI</p>
+          </div>
+        </div>
+        <div
+          class="p-6 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 border border-gray-800 shadow-lg group cursor-pointer flex items-center gap-4">
+          <div class="h-10 w-10 rounded-xl bg-white/10 flex items-center justify-center text-white shrink-0">
+            <i class="fas fa-crown text-yellow-400"></i>
+          </div>
+          <div>
+            <h3 class="font-bold text-white">{{ config.public.appName }} Pro</h3>
+            <p class="text-sm text-gray-400">Unlock premium templates</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Featured Templates -->
+      <section class="mb-10 animate-in fade-in slide-in-from-bottom-4 duration-1000">
+        <div class="flex items-center justify-between mb-5">
+          <h2 class="text-base font-bold text-gray-800 uppercase tracking-widest">Featured Templates</h2>
+          <span class="text-xs text-gray-400 font-medium">Click to preview</span>
+        </div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <NuxtLink v-for="(item, i) in featuredTemplates" :key="i" :to="`/template/${item.id}`"
+            class="group relative rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer bg-white">
+            <div :class="['relative overflow-hidden', item.type === 'resume' ? 'aspect-[3/4]' : 'aspect-[4/3]']">
+              <img :src="item.src" :alt="item.label"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div
+                class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-3">
+                <span class="text-white text-xs font-bold uppercase tracking-wider">Preview</span>
+              </div>
+              <div class="absolute top-2 right-2">
+                <span
+                  :class="['text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full', item.type === 'resume' ? 'bg-blue-500 text-white' : 'bg-purple-500 text-white']">
+                  {{ item.type }}
+                </span>
+              </div>
+            </div>
+            <div class="p-3">
+              <p class="text-xs font-bold text-gray-800 truncate">{{ item.label }}</p>
+              <p class="text-[10px] text-gray-400 mt-0.5">{{ item.subtitle }}</p>
+            </div>
+          </NuxtLink>
+        </div>
+      </section>
+
+      <section class="sticky top-0 z-30 transparent py-4 space-y-6 px-2 -mx-2 transition-all duration-300">
+
+        <div class="flex flex-col md:flex-row md:items-center gap-4">
+          <div class="flex-1">
+            <SearchBar />
+          </div>
+        </div>
+
+      </section>
+
+
+      <div class="relative">
+        <filterIcons />
+      </div>
+
+      <div class="space-y-16 pb-20 -mx-6 lg:-mx-12">
+        <DashboardRow v-for="category in categories" :key="category.title" :title="category.title"
+          :layout="category.layout" :items="category.items" />
+      </div>
+
     </div>
-  </div>
+  </main>
 </template>
 
 <script setup>
+definePageMeta({
+  layout: 'dashboard-layout'
+})
 import DashboardRow from '~/components/dash/rows.vue'
-import Nav from '~/components/nav.vue'
 import Welcome from '~/components/dash/welcome.vue'
-import sideBar from '~/components/sideBar.vue';
 import SearchBar from '~/components/ui/searchBar.vue';
 import filterIcons from '~/components/dash/filterIcons.vue';
 

@@ -34,13 +34,13 @@
 
       <SidebarItem label="Home" icon="fa-solid fa-house" :expanded="isExpanded || isHovered" to="/dashboard" />
       <SidebarItem label="My Space" icon="fa-solid fa-layer-group" :expanded="isExpanded || isHovered" to="/my-space" />
-      <SidebarItem label="Resumes" icon="fa-solid fa-file-lines" :expanded="isExpanded || isHovered" to="/dashboard" />
-      <SidebarItem label="Portfolios" icon="fa-solid fa-palette" :expanded="isExpanded || isHovered" to="/dashboard" />
+      <SidebarItem label="Resumes" icon="fa-solid fa-file-lines" :expanded="isExpanded || isHovered" to="/resumes" />
+      <SidebarItem label="Portfolios" icon="fa-solid fa-palette" :expanded="isExpanded || isHovered" to="/portfolios" />
       <SidebarItem label="Saved" icon="fa-solid fa-star" :expanded="isExpanded || isHovered" />
 
       <div class="hidden lg:block my-6 border-t border-slate-100"></div>
 
-      <SidebarItem label="Settings" icon="fa-solid fa-gear" :expanded="isExpanded || isHovered" />
+      <SidebarItem label="Settings" icon="fa-solid fa-gear" :expanded="isExpanded || isHovered" to="/settings"/>
 
     </nav>
 

@@ -141,7 +141,7 @@ useHead({
           </span>
 
           <div
-            class="text-[clamp(4rem,8vw,8rem)] font-black leading-none tracking-tighter tabular-nums">
+            class="text-[clamp(8rem,16vw,16rem)] font-black leading-none tracking-tighter tabular-nums">
             {{ countdown.days }}
           </div>
 

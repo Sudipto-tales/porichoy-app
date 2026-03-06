@@ -1,6 +1,6 @@
 <template>
   <aside @mouseenter="isHovered = true" @mouseleave="isHovered = false" :class="[
-    'fixed lg:sticky top-0 left-0 z-50 transition-all duration-500 ease-in-out',
+    'fixed lg:sticky bottom-0 left-0 z-50 transition-all duration-500 ease-in-out',
     'bg-white/80 backdrop-blur-xl border-slate-200/60',
     'h-16 w-full bottom-0 flex-row border-t lg:h-screen lg:flex-col lg:border-r lg:border-t-0',
     isExpanded || isHovered ? 'lg:w-64 shadow-xl' : 'lg:w-20 shadow-sm'

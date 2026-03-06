@@ -73,15 +73,17 @@
                                 <div class="md:pt-16 flex gap-3">
                                     <button @click="isEditModalOpen = true"
                                         class="px-6 py-2.5 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-all flex items-center gap-2 shadow-lg shadow-gray-200">
+                                        <i class="fas fa-pen text-xs"></i>
+                                    </button>
+                                    <button @click="isEditModalOpen = true"
+                                        class="px-6 py-2.5 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-all flex items-center gap-2 shadow-lg shadow-gray-200">
                                         <i class="fas fa-download text-xs"></i>
                                         Download CV
                                     </button>
-
-                                    <button @click="isEditModalOpen = true"
-                                        class="px-6 py-2.5 rounded-xl bg-gray-900 text-white font-bold text-sm hover:bg-gray-800 transition-all flex items-center gap-2 shadow-lg shadow-gray-200">
-                                        <i class="fas fa-pen text-xs"></i>
-                                        Edit Profile
-                                    </button>
+                                    <NuxtLink to="/profile/edit" class="px-6 py-2.5 rounded-xl bg-blue-600 text-white font-bold text-sm hover:bg-blue-700 transition-all flex items-center gap-2 shadow-lg shadow-blue-200">
+                                        <i class="fas fa-cogs text-xs"></i>
+                                        Customize
+                                    </NuxtLink>
                                 </div>
                             </div>
                         </div>

@@ -58,36 +58,9 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
-        <div v-for="(resume, i) in filteredResumes" :key="i" class="group space-y-4">
-          <div
-            class="relative aspect-[3/4] bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden group-hover:shadow-2xl group-hover:-translate-y-2 transition-all duration-500">
-            <img :src="resume.src" :alt="resume.label" class="w-full h-full object-cover" />
-
-            <div v-if="resume.isPro"
-              class="absolute top-3 left-3 px-2 py-0.5 bg-yellow-400 text-[8px] font-black uppercase rounded shadow-sm">
-              Pro
-            </div>
-
-            <div
-              class="absolute inset-0 bg-gray-900/10 opacity-0 group-hover:opacity-100 transition-all flex flex-col items-center justify-end p-6">
-              <NuxtLink :to="`/builder/${resume.id}`"
-                class="w-full py-3 bg-white text-gray-900 text-[10px] font-black uppercase tracking-widest text-center shadow-xl hover:bg-blue-600 hover:text-white transition-all">
-                Use Template
-              </NuxtLink>
-            </div>
-          </div>
-
-          <div class="text-center md:text-left">
-            <h4 class="text-sm font-black text-gray-900 uppercase tracking-tight">{{ resume.label }}</h4>
-            <div class="flex items-center justify-center md:justify-start gap-2 mt-1">
-              <span class="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{{ resume.style }}</span>
-              <span class="h-1 w-1 bg-gray-200 rounded-full"></span>
-              <span class="text-[9px] font-black" :class="resume.price === 0 ? 'text-green-500' : 'text-gray-900'">
-                {{ resume.price === 0 ? 'FREE' : `$${resume.price}` }}
-              </span>
-            </div>
-          </div>
-        </div>
+        <TemplateCard v-for="(resume, i) in filteredResumes" :key="i" :item="resume"
+          :action-link="`/editor/resume/${resume.id}`" action-text="Customize" :show-star="true"
+          :is-starred="isStarred(resume.id)" @toggle-star="toggleStar" />
       </div>
     </div>
   </main>
@@ -96,10 +69,15 @@
 <script setup>
 import { ref, computed } from 'vue'
 import HeroIntro from '~/components/ui/HeroIntro.vue'
+import TemplateCard from '~/components/cards/TemplateCard.vue'
 import { useTemplateFilter } from '~/composables/useTemplateFilter.js'
+import { useStarred } from '~/composables/useStarred'
+
 definePageMeta({
   layout: 'dashboard-layout'
 })
+
+const { toggleStar, isStarred } = useStarred()
 
 const searchQuery = ref('')
 const activeCategory = ref('All Templates')

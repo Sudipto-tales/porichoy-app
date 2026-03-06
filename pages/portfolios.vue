@@ -64,51 +64,9 @@
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-        <div v-for="(item, i) in filteredPortfolios" :key="i" class="group flex flex-col gap-5">
-          <div
-            class="relative aspect-[16/10] rounded-[2.5rem] overflow-hidden border-4 border-white shadow-sm hover:shadow-2xl hover:border-indigo-50 transition-all duration-500 bg-gray-100">
-            <img :src="item.src" :alt="item.label"
-              class="w-full h-full object-cover grayscale-[40%] group-hover:grayscale-0 transition-all duration-700" />
-
-            <div class="absolute top-6 right-6">
-              <div v-if="item.isPro"
-                class="h-8 w-8 rounded-xl bg-gray-900 flex items-center justify-center text-yellow-400 shadow-xl">
-                <i class="fas fa-crown text-xs"></i>
-              </div>
-            </div>
-
-            <div
-              class="absolute inset-0 bg-indigo-900/80 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col items-center justify-center p-8 text-center">
-              <p class="text-indigo-200 text-[10px] font-black uppercase tracking-[0.3em] mb-4">Architecture v2.0</p>
-              <h3 class="text-white text-2xl font-black mb-8 leading-tight">{{ item.label }}</h3>
-
-              <div class="flex items-center gap-3">
-                <NuxtLink :to="`/preview/${item.id}`"
-                  class="px-6 py-3 bg-white text-gray-900 rounded-xl text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform">
-                  Live Preview
-                </NuxtLink>
-                <button
-                  class="h-11 w-11 rounded-xl bg-white/10 text-white hover:bg-white hover:text-indigo-600 transition-all">
-                  <i class="fas fa-heart"></i>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="px-4 flex items-start justify-between">
-            <div>
-              <h4 class="font-black text-gray-900 text-lg uppercase tracking-tight">{{ item.label }}</h4>
-              <div class="flex items-center gap-3 mt-1">
-                <span class="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ item.category }}</span>
-                <span class="h-1 w-1 rounded-full bg-gray-200"></span>
-                <span class="text-[10px] font-bold text-indigo-500 uppercase tracking-widest">{{ item.tech }}</span>
-              </div>
-            </div>
-            <div class="text-right">
-              <span class="text-sm font-black text-gray-900">{{ item.price === 0 ? 'FREE' : `$${item.price}` }}</span>
-            </div>
-          </div>
-        </div>
+        <PortfolioCard v-for="(item, i) in filteredPortfolios" :key="i" :item="item"
+          :preview-link="`/preview/${item.id}`" :editor-link="`/editor/portfolio/${item.id}`" :show-star="true"
+          :is-starred="isStarred(item.id)" @toggle-star="toggleStar" />
       </div>
 
       <div v-if="filteredPortfolios.length === 0" class="py-32 text-center">
@@ -124,9 +82,14 @@
 <script setup>
 import { ref } from 'vue'
 import HeroIntro from '~/components/ui/HeroIntro.vue'
+import PortfolioCard from '~/components/cards/PortfolioCard.vue'
+import { useStarred } from '~/composables/useStarred'
+
 definePageMeta({
   layout: 'dashboard-layout'
 })
+
+const { toggleStar, isStarred } = useStarred()
 
 const searchQuery = ref('')
 const activeFilter = ref('All')

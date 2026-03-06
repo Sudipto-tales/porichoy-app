@@ -58,7 +58,7 @@
 
       <SidebarItem label="Analytics" icon="fa-solid fa-chart-pie" :expanded="isExpanded || isHovered" to="/analytics" />
 
-      <SidebarItem label="Saved" icon="fa-solid fa-star" :expanded="isExpanded || isHovered" />
+      <SidebarItem label="Saved" icon="fa-solid fa-star" :expanded="isExpanded || isHovered" to="/saved" />
 
       <!-- Divider -->
       <div class="hidden lg:block my-6 border-t border-slate-100"></div>

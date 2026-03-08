@@ -27,7 +27,7 @@
             </div>
 
             <!-- Desktop Links -->
-            <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest text-slate-500">
+            <!-- <div class="hidden md:flex gap-8 text-xs font-semibold uppercase tracking-widest text-slate-500">
                 <NuxtLink to="/templates" class="hover:text-black transition-colors">
                     Templates
                 </NuxtLink>
@@ -39,7 +39,7 @@
                 <NuxtLink to="/explore" class="hover:text-black transition-colors">
                     Explore
                 </NuxtLink>
-            </div>
+            </div> -->
 
         </div>
 
@@ -145,9 +145,9 @@
                 <!-- Dropdown -->
                 <div
                     class="absolute right-0 mt-3 w-48 bg-white rounded-xl shadow-xl border border-slate-200 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300">
-                    <NuxtLink to="/dashboard" class="block px-4 py-2 hover:bg-slate-50 text-sm">
+                    <!-- <NuxtLink to="/dashboard" class="block px-4 py-2 hover:bg-slate-50 text-sm">
                         Dashboard
-                    </NuxtLink>
+                    </NuxtLink> -->
                     <NuxtLink to="/settings" class="block px-4 py-2 hover:bg-slate-50 text-sm">
                         Settings
                     </NuxtLink>

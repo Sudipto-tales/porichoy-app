@@ -1,132 +1,148 @@
 <template>
-  <aside @mouseenter="isHovered = true" @mouseleave="isHovered = false" :class="[
-    'fixed lg:sticky bottom-0 left-0 z-50 transition-all duration-500 ease-in-out',
-    'bg-white/80 backdrop-blur-xl border-slate-200/60',
-    'h-16 w-full bottom-0 flex-row border-t lg:h-screen lg:flex-col lg:border-r lg:border-t-0',
-    isExpanded || isHovered ? 'lg:w-64 shadow-xl' : 'lg:w-20 shadow-sm'
-  ]" class="flex items-center lg:items-stretch">
-
-    <!-- Logo Section -->
-    <!-- <div class="hidden lg:flex items-center px-6 h-16 border-b border-slate-100">
-      <div class="flex items-center gap-3 overflow-hidden">
-        <div class="min-w-[34px] h-9 bg-gradient-to-tr rounded-xl flex items-center justify-center shadow-lg">
-          <img src="/porichoy.favicon.png" class="w-6 h-6 object-contain" />
-        </div>
-
-        <Transition name="fade">
-          <h1
-            v-if="isExpanded || isHovered"
-            class="text-lg font-black tracking-tight whitespace-nowrap"
+  <aside 
+    @mouseenter="isHovered = true" 
+    @mouseleave="isHovered = false" 
+    :class="[
+      'fixed lg:sticky bottom-0 left-0 z-50 transition-all duration-500 ease-in-out',
+      'bg-white/90 backdrop-blur-xl border-slate-200/60',
+      'h-16 w-full lg:h-screen flex flex-row lg:flex-col border-t lg:border-r lg:border-t-0',
+      isExpanded || isHovered ? 'lg:w-64 shadow-2xl' : 'lg:w-20 shadow-sm'
+    ]"
+  >
+    <nav class="flex flex-row lg:flex-col flex-1 min-h-0 w-full overflow-hidden">
+      
+      <div class="flex flex-row lg:flex-col flex-1 lg:px-3 lg:py-6 gap-1 overflow-y-auto no-scrollbar">
+        <template v-for="(group, index) in navigationGroups" :key="index">
+          
+          <div 
+            v-if="(isExpanded || isHovered) && group.label" 
+            class="hidden lg:block mt-6 mb-2 px-4 text-[10px] font-black uppercase tracking-[0.2em]"
+            :class="group.labelColor || 'text-slate-400'"
           >
-            Porichoy
-          </h1>
+            {{ group.label }}
+          </div>
+
+          <div v-for="item in group.items" :key="item.to" class="relative group/item">
+            <SidebarItem 
+              :label="item.label" 
+              :icon="item.icon" 
+              :to="item.to" 
+              :expanded="isExpanded || isHovered" 
+            />
+            
+            <span 
+              v-if="(isExpanded || isHovered) && item.badge"
+              class="absolute right-4 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded-md text-[8px] font-black uppercase border"
+              :class="item.badgeClass || 'bg-blue-50 text-blue-600 border-blue-100'"
+            >
+              {{ item.badge }}
+            </span>
+          </div>
+        </template>
+      </div>
+
+      <div class="hidden lg:flex flex-col gap-1 px-3 py-4 border-t border-slate-100 bg-white/50">
+        <SidebarItem 
+          v-for="item in bottomNav" 
+          :key="item.to"
+          :label="item.label" 
+          :icon="item.icon" 
+          :to="item.to" 
+          :expanded="isExpanded || isHovered" 
+        />
+        
+        <Transition name="fade">
+          <div v-if="isExpanded || isHovered" class="mt-4 p-3 rounded-[1.5rem] bg-slate-50 border border-slate-100 flex items-center gap-3">
+            <div class="h-8 w-8 rounded-xl bg-gray-900 flex items-center justify-center text-[10px] text-white font-black shadow-lg">
+              SG
+            </div>
+            <div class="flex flex-col overflow-hidden">
+              <span class="text-[10px] font-bold text-slate-800 truncate">Sudipta Ghosh</span>
+              <span class="text-[8px] font-black text-blue-500 uppercase tracking-tighter">Founder & CEO</span>
+            </div>
+          </div>
         </Transition>
       </div>
-    </div> -->
-
-    <!-- Navigation -->
-    <nav
-      class="flex flex-row lg:flex-col flex-1 justify-around lg:justify-start lg:px-3 lg:py-6 gap-2 w-full overflow-y-auto scrollbar-hide">
-
-      <!-- Dashboard -->
-      <SidebarItem label="Dashboard" icon="fa-solid fa-chart-line" :expanded="isExpanded || isHovered"
-        to="/dashboard" />
-
-      <!-- Builder Section -->
-      <div v-if="isExpanded || isHovered"
-        class="hidden lg:block mt-6 mb-2 px-3 text-[11px] uppercase tracking-wider text-slate-400 font-semibold">
-        Build
-      </div>
-
-      <SidebarItem label="Resume Builder" icon="fa-solid fa-file-lines" :expanded="isExpanded || isHovered"
-        to="/resumes" />
-
-      <SidebarItem label="Portfolio Builder" icon="fa-solid fa-palette" :expanded="isExpanded || isHovered"
-        to="/portfolios" />
-
-      <SidebarItem label="Templates" icon="fa-solid fa-clone" :expanded="isExpanded || isHovered" to="/templates" />
-
-      <!-- Manage Section -->
-      <div v-if="isExpanded || isHovered"
-        class="hidden lg:block mt-6 mb-2 px-3 text-[11px] uppercase tracking-wider text-slate-400 font-semibold">
-        Manage
-      </div>
-
-      <SidebarItem label="My Space" icon="fa-solid fa-layer-group" :expanded="isExpanded || isHovered" to="/my-space" />
-
-      <SidebarItem label="Domain" icon="fa-solid fa-globe" :expanded="isExpanded || isHovered" to="/domain" />
-
-      <SidebarItem label="Analytics" icon="fa-solid fa-chart-pie" :expanded="isExpanded || isHovered" to="/analytics" />
-
-      <SidebarItem label="Saved" icon="fa-solid fa-star" :expanded="isExpanded || isHovered" to="/saved" />
-
-      <!-- Divider -->
-      <div class="hidden lg:block my-6 border-t border-slate-100"></div>
-
-      <!-- Settings -->
-      <SidebarItem label="Settings" icon="fa-solid fa-gear" :expanded="isExpanded || isHovered" to="/settings" />
-
     </nav>
 
-    <!-- Expand Button -->
-    <button @click="isExpanded = !isExpanded" :class="[
-      'hidden lg:flex absolute -right-3 top-20 w-7 h-7 rounded-full border border-slate-200 bg-white items-center justify-center shadow-md transition-all duration-300 hover:scale-110',
-      isHovered ? 'opacity-100' : 'opacity-0'
-    ]">
-      <i :class="[
-        'fa-solid fa-chevron-right text-xs transition-transform duration-500',
-        isExpanded ? 'rotate-180' : ''
-      ]"></i>
+    <button 
+      @click="isExpanded = !isExpanded" 
+      :class="[
+        'hidden lg:flex absolute -right-3 top-20 w-7 h-7 rounded-full border border-slate-200 bg-white items-center justify-center shadow-md transition-all duration-300 hover:scale-110 z-[60]',
+        isHovered || isExpanded ? 'opacity-100' : 'opacity-0'
+      ]"
+    >
+      <i :class="['fa-solid fa-chevron-right text-[10px] transition-transform duration-500', isExpanded ? 'rotate-180' : '']"></i>
     </button>
-    
-
-    <!-- Profile Section -->
-    <!-- <div class="hidden lg:flex items-center p-4 mt-auto border-t border-slate-100">
-      <div
-        class="w-9 h-9 rounded-full bg-indigo-500 flex items-center justify-center text-white font-semibold shadow-md">
-        S
-      </div>
-
-      <Transition name="fade">
-        <div v-if="isExpanded || isHovered" class="ml-3">
-          <p class="text-sm font-semibold text-slate-800">Sudipta Ghosh</p>
-          <p class="text-xs text-indigo-500 font-medium">Pro Plan</p>
-        </div>
-      </Transition>
-    </div> -->
-
   </aside>
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, reactive } from 'vue'
 import SidebarItem from '~/components/items/SidebarItem.vue'
 
 const isExpanded = ref(false)
 const isHovered = ref(false)
+
+// Main Navigation Configuration
+const navigationGroups = [
+  {
+    label: null, // No label for the first group
+    items: [
+      { label: 'Dashboard', icon: 'fa-solid fa-chart-line', to: '/dashboard' }
+    ]
+  },
+  {
+    label: 'Build',
+    items: [
+      { label: 'Resume Builder', icon: 'fa-solid fa-file-lines', to: '/resumes' },
+      { label: 'Portfolio Builder', icon: 'fa-solid fa-palette', to: '/portfolios' }
+    ]
+  },
+  {
+    label: 'Manage',
+    items: [
+      { label: 'My Space', icon: 'fa-solid fa-layer-group', to: '/my-space' },
+      { label: 'Analytics', icon: 'fa-solid fa-chart-pie', to: '/analytics' },
+      { label: 'Domain', icon: 'fa-solid fa-globe', to: '/domain' },
+      { label: 'Saved', icon: 'fa-solid fa-star', to: '/saved' }
+    ]
+  },
+  {
+    label: 'Laboratory',
+    labelColor: 'text-blue-500',
+    items: [
+      { 
+        label: 'QA Terminal', 
+        icon: 'fa-solid fa-flask-vial', 
+        to: '/tester', 
+        badge: 'Beta',
+        badgeClass: 'bg-blue-50 text-blue-600 border-blue-100' 
+      }
+    ]
+  }
+]
+
+// Pinned Bottom Navigation
+const bottomNav = [
+  { label: 'Settings', icon: 'fa-solid fa-gear', to: '/settings' }
+]
 </script>
 
 <style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-  transform: translateX(-8px);
-}
-
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  /* IE & Edge */
-  scrollbar-width: none;
-  /* Firefox */
-}
-
-.scrollbar-hide::-webkit-scrollbar {
+.no-scrollbar::-webkit-scrollbar {
   display: none;
-  /* Chrome, Safari */
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all 0.3s ease;
+}
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>

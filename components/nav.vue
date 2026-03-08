@@ -49,7 +49,7 @@
     <!-- Beta Button -->
     <NuxtLink
       v-if="betaButton"
-      to="/coming_soon"
+      to="/dashboard"
       class="bg-black text-white px-6 py-2.5 rounded-full text-sm font-bold hover:bg-gray-800 transition-all"
     >
       Join Beta

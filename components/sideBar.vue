@@ -56,7 +56,7 @@
 
       <SidebarItem label="Domain" icon="fa-solid fa-globe" :expanded="isExpanded || isHovered" to="/domain" />
 
-      <SidebarItem label="Analytics" icon="fa-solid fa-chart-pie" :expanded="isExpanded || isHovered" to="/analytics" />
+      <!-- <SidebarItem label="Analytics" icon="fa-solid fa-chart-pie" :expanded="isExpanded || isHovered" to="/analytics" /> -->
 
       <SidebarItem label="Saved" icon="fa-solid fa-star" :expanded="isExpanded || isHovered" />
 

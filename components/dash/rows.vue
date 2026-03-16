@@ -1,10 +1,8 @@
 <template>
   <div class="px-6 lg:px-12">
     <div class="flex items-center justify-between mb-4">
-      <h3 class="text-xl font-black tracking-tight text-gray-800">{{ title }}</h3>
-      <button
-        class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-black transition"
-      >
+      <h3 class="text-xl font-black tracking-tight" :style="{ color: 'var(--text-primary)' }">{{ title }}</h3>
+      <button class="text-xs font-bold uppercase tracking-widest transition" :style="{ color: 'var(--text-muted)' }">
         View More →
       </button>
     </div>

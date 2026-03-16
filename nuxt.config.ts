@@ -2,9 +2,15 @@
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
+  css: ['~/assets/css/theme.css'],
   modules: [
     '@nuxtjs/tailwindcss'
   ],
+  tailwindcss: {
+    config: {
+      darkMode: 'class',
+    }
+  },
   app: {
     head: {
       link: [
@@ -28,3 +34,4 @@ export default defineNuxtConfig({
     }
   }
 })
+

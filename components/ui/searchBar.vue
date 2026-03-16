@@ -1,18 +1,16 @@
 <template>
-  <div class="w-full flex">
-    
-    <div class="relative w-full max-w-4xl">
-      
-      <input
-        type="search"
-        placeholder="Search templates..."
-        class="w-full bg-white border border-gray-200 rounded-2xl px-6 py-4 pl-12 shadow-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 transition duration-300"
-      />
-
-      <!-- Search Icon -->
-      <i class="fa-solid fa-magnifying-glass absolute left-5 top-1/2 -translate-y-1/2 text-gray-400"></i>
-
-    </div>
-
+  <div class="relative">
+    <i class="fas fa-search absolute left-4 top-1/2 -translate-y-1/2 text-sm" :style="{ color: 'var(--text-muted)' }"></i>
+    <input 
+      type="text" 
+      placeholder="Search templates, categories..." 
+      class="w-full pl-11 pr-4 py-3 rounded-2xl text-sm outline-none transition-all focus:ring-2 focus:ring-blue-500/20"
+      :style="{ backgroundColor: 'var(--bg-input)', border: '1px solid var(--border)', color: 'var(--text-secondary)', '--tw-placeholder-opacity': 1 }"
+    />
   </div>
 </template>
+
+<style scoped>
+input::placeholder { color: var(--text-muted); }
+input:focus { border-color: rgba(59, 130, 246, 0.3); background-color: var(--bg-card-hover); }
+</style>

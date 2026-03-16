@@ -1,68 +1,53 @@
 <script setup>
-definePageMeta({
-  layout: 'dashboard-layout'
-})
+definePageMeta({ layout: 'dashboard-layout' })
 
-const passwordForm = reactive({
-  current: '',
-  new: '',
-  confirm: ''
-})
-
-const updatePassword = () => {
-  console.log('Credentials updated.')
-}
+const passwordForm = reactive({ current: '', new: '', confirm: '' })
+const updatePassword = () => { console.log('Credentials updated.') }
 </script>
 
 <template>
-  <main class="flex-1 overflow-y-auto bg-[#FDFDFD] custom-scrollbar">
-    <div class="absolute inset-0 z-0 opacity-[0.03] pointer-events-none blueprint-fine"></div>
-
+  <main class="flex-1 overflow-y-auto custom-scrollbar">
+    <div class="absolute inset-0 z-0 opacity-[0.02] pointer-events-none blueprint-fine"></div>
     <div class="max-w-6xl mx-auto px-6 py-16 relative z-10">
       
-      <header class="mb-16 border-b border-gray-100 pb-12">
-        <h1 class="text-3xl md:text-4xl font-black text-gray-900 tracking-tighter leading-none mb-4">
-          SYSTEM <br />
-          <span class="text-indigo-600 italic">PREFERENCES.</span>
+      <header class="mb-16 pb-12" :style="{ borderBottom: '1px solid var(--border)' }">
+        <h1 class="text-3xl md:text-4xl font-black tracking-tighter leading-none mb-4" :style="{ color: 'var(--text-primary)' }">
+          SYSTEM <br /><span class="text-blue-400 italic">PREFERENCES.</span>
         </h1>
-        <p class="text-sm font-medium text-gray-400 uppercase tracking-[0.3em]">
-          Configuration Mode: 03-MAR-2026
-        </p>
+        <p class="text-sm font-medium uppercase tracking-[0.3em]" :style="{ color: 'var(--text-muted)' }">Configuration Mode: 12-MAR-2026</p>
       </header>
 
       <div class="space-y-20">
-        
         <section class="grid grid-cols-1 md:grid-cols-3">
           <div class="space-y-2">
-            <h3 class="text-xs font-black uppercase tracking-widest text-gray-900">Access Control</h3>
-            <p class="text-[11px] text-gray-400 leading-relaxed font-medium">
-              Update your authentication tokens to ensure the structural integrity of your account.
-            </p>
+            <h3 class="text-xs font-black uppercase tracking-widest" :style="{ color: 'var(--text-primary)' }">Access Control</h3>
+            <p class="text-[11px] leading-relaxed font-medium" :style="{ color: 'var(--text-muted)' }">Update your authentication tokens.</p>
           </div>
-
           <div class="md:col-span-2">
-            <form @submit.prevent="updatePassword" class="space-y-8 bg-white p-8 md:p-12 rounded-3xl border border-gray-100 shadow-sm">
+            <form @submit.prevent="updatePassword" class="space-y-8 p-8 md:p-12 rounded-3xl"
+              :style="{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border)' }">
               <div class="space-y-6">
-                <div class="relative group">
-                  <label class="absolute -top-2 left-4 px-2 bg-white text-[9px] font-black text-indigo-600 uppercase tracking-widest z-10">Current Password</label>
-                  <input v-model="passwordForm.current" type="password" class="w-full px-5 py-4 border border-gray-100 rounded-xl outline-none focus:border-indigo-600 transition-all text-sm font-bold" />
+                <div class="relative">
+                  <label class="absolute -top-2 left-4 px-2 text-[9px] font-black text-blue-400 uppercase tracking-widest z-10" :style="{ backgroundColor: 'var(--bg-page)' }">Current Password</label>
+                  <input v-model="passwordForm.current" type="password" class="w-full px-5 py-4 rounded-xl outline-none text-sm font-bold bg-transparent"
+                    :style="{ border: '1px solid var(--border-input)', color: 'var(--text-primary)' }" />
                 </div>
-
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div class="relative group">
-                    <label class="absolute -top-2 left-4 px-2 bg-white text-[9px] font-black text-gray-400 uppercase tracking-widest z-10">New Password</label>
-                    <input v-model="passwordForm.new" type="password" class="w-full px-5 py-4 border border-gray-100 rounded-xl outline-none focus:border-indigo-600 transition-all text-sm font-bold" />
+                  <div class="relative">
+                    <label class="absolute -top-2 left-4 px-2 text-[9px] font-black uppercase tracking-widest z-10" :style="{ backgroundColor: 'var(--bg-page)', color: 'var(--text-muted)' }">New Password</label>
+                    <input v-model="passwordForm.new" type="password" class="w-full px-5 py-4 rounded-xl outline-none text-sm font-bold bg-transparent"
+                      :style="{ border: '1px solid var(--border-input)', color: 'var(--text-primary)' }" />
                   </div>
-                  <div class="relative group">
-                    <label class="absolute -top-2 left-4 px-2 bg-white text-[9px] font-black text-gray-400 uppercase tracking-widest z-10">Confirm New</label>
-                    <input v-model="passwordForm.confirm" type="password" class="w-full px-5 py-4 border border-gray-100 rounded-xl outline-none focus:border-indigo-600 transition-all text-sm font-bold" />
+                  <div class="relative">
+                    <label class="absolute -top-2 left-4 px-2 text-[9px] font-black uppercase tracking-widest z-10" :style="{ backgroundColor: 'var(--bg-page)', color: 'var(--text-muted)' }">Confirm New</label>
+                    <input v-model="passwordForm.confirm" type="password" class="w-full px-5 py-4 rounded-xl outline-none text-sm font-bold bg-transparent"
+                      :style="{ border: '1px solid var(--border-input)', color: 'var(--text-primary)' }" />
                   </div>
                 </div>
               </div>
-
               <div class="pt-4 flex items-center justify-between">
-                <span class="text-[10px] text-gray-300 font-bold italic underline">Lost password?</span>
-                <button type="submit" class="px-10 py-4 bg-gray-900 text-white font-black text-[10px] uppercase tracking-[0.3em] rounded-xl hover:bg-indigo-600 transition-all">
+                <span class="text-[10px] font-bold italic underline cursor-pointer" :style="{ color: 'var(--text-muted)' }">Lost password?</span>
+                <button type="submit" class="px-10 py-4 bg-blue-600 hover:bg-blue-500 text-white font-black text-[10px] uppercase tracking-[0.3em] rounded-xl transition-all">
                   Update_Credentials
                 </button>
               </div>
@@ -72,72 +57,58 @@ const updatePassword = () => {
 
         <section class="grid grid-cols-1 md:grid-cols-3 p-6">
           <div class="space-y-2">
-            <h3 class="text-xs font-black uppercase tracking-widest text-gray-900">Environment</h3>
-            <p class="text-[11px] text-gray-400 leading-relaxed font-medium">
-              Customize how the Porichoy engine renders your workspace data.
-            </p>
+            <h3 class="text-xs font-black uppercase tracking-widest" :style="{ color: 'var(--text-primary)' }">Environment</h3>
+            <p class="text-[11px] leading-relaxed font-medium" :style="{ color: 'var(--text-muted)' }">Customize your workspace rendering.</p>
           </div>
-
           <div class="md:col-span-2 space-y-4">
-            <div class="flex items-center justify-between p-6 bg-white border border-gray-100 rounded-2xl">
+            <div class="flex items-center justify-between p-6 rounded-2xl" :style="{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border)' }">
               <div class="flex items-center gap-4">
-                <div class="h-10 w-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400"><i class="fas fa-shield-alt"></i></div>
+                <div class="h-10 w-10 rounded-xl flex items-center justify-center" :style="{ backgroundColor: 'var(--icon-bg)', color: 'var(--icon-text)' }"><i class="fas fa-shield-alt"></i></div>
                 <div>
-                  <p class="text-xs font-black text-gray-800 uppercase">Two-Factor Authentication</p>
-                  <p class="text-[10px] text-gray-400 font-medium italic mt-0.5">Recommended for high-security nodes.</p>
+                  <p class="text-xs font-black uppercase" :style="{ color: 'var(--text-primary)' }">Two-Factor Auth</p>
+                  <p class="text-[10px] font-medium italic mt-0.5" :style="{ color: 'var(--text-muted)' }">Recommended for security.</p>
                 </div>
               </div>
-              <div class="w-12 h-6 bg-gray-100 rounded-full relative cursor-pointer flex items-center px-1">
-                <div class="h-4 w-4 bg-white rounded-full shadow-sm"></div>
+              <div class="w-12 h-6 rounded-full relative cursor-pointer flex items-center px-1" :style="{ backgroundColor: 'var(--toggle-bg)' }">
+                <div class="h-4 w-4 rounded-full shadow-sm" :style="{ backgroundColor: 'var(--toggle-knob)' }"></div>
               </div>
             </div>
-
-            <div class="flex items-center justify-between p-6 bg-white border border-gray-100 rounded-2xl">
+            <div class="flex items-center justify-between p-6 rounded-2xl" :style="{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border)' }">
               <div class="flex items-center gap-4">
-                <div class="h-10 w-10 rounded-xl bg-gray-50 flex items-center justify-center text-gray-400"><i class="fas fa-envelope-open-text"></i></div>
+                <div class="h-10 w-10 rounded-xl flex items-center justify-center" :style="{ backgroundColor: 'var(--icon-bg)', color: 'var(--icon-text)' }"><i class="fas fa-envelope-open-text"></i></div>
                 <div>
-                  <p class="text-xs font-black text-gray-800 uppercase">Deployment Alerts</p>
-                  <p class="text-[10px] text-gray-400 font-medium italic mt-0.5">Receive logs when a portfolio is published.</p>
+                  <p class="text-xs font-black uppercase" :style="{ color: 'var(--text-primary)' }">Deployment Alerts</p>
+                  <p class="text-[10px] font-medium italic mt-0.5" :style="{ color: 'var(--text-muted)' }">Logs when portfolio is published.</p>
                 </div>
               </div>
-              <div class="w-12 h-6 bg-indigo-600 rounded-full relative cursor-pointer flex items-center justify-end px-1">
+              <div class="w-12 h-6 bg-blue-600 rounded-full relative cursor-pointer flex items-center justify-end px-1">
                 <div class="h-4 w-4 bg-white rounded-full shadow-sm"></div>
               </div>
             </div>
           </div>
         </section>
 
-        <section class="pt-12 border-t border-gray-100">
-          <div class="p-8 rounded-3xl bg-red-50/30 border border-red-100 flex flex-col md:flex-row md:items-center justify-between gap-6">
+        <section class="pt-12" :style="{ borderTop: '1px solid var(--border)' }">
+          <div class="p-8 rounded-3xl flex flex-col md:flex-row md:items-center justify-between gap-6"
+            :style="{ backgroundColor: 'var(--danger-bg)', border: '1px solid var(--danger-border)' }">
             <div>
-              <h3 class="text-xs font-black text-red-600 uppercase tracking-widest mb-1">Erase Architectural Data</h3>
-              <p class="text-[11px] text-gray-400 font-medium">This action will permanently decommission all assets and identity nodes.</p>
+              <h3 class="text-xs font-black uppercase tracking-widest mb-1" :style="{ color: 'var(--danger-text)' }">Erase Architectural Data</h3>
+              <p class="text-[11px] font-medium" :style="{ color: 'var(--text-muted)' }">This will permanently decommission all assets.</p>
             </div>
-            <button class="px-6 py-3 border border-red-200 text-red-600 text-[10px] font-black uppercase tracking-widest hover:bg-red-600 hover:text-white transition-all rounded-xl">
+            <button class="px-6 py-3 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all hover:bg-red-600 hover:text-white"
+              :style="{ border: '1px solid var(--danger-border)', color: 'var(--danger-text)' }">
               Decommission_Account
             </button>
           </div>
         </section>
-
       </div>
     </div>
   </main>
 </template>
 
 <style scoped>
-.blueprint-fine {
-  background-image:
-    linear-gradient(to right, rgba(0,0,0,0.08) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0,0,0,0.08) 1px, transparent 1px);
-  background-size: 80px 80px;
-}
-
+.blueprint-fine { background-image: linear-gradient(to right, var(--grid-pattern) 1px, transparent 1px), linear-gradient(to bottom, var(--grid-pattern) 1px, transparent 1px); background-size: 80px 80px; }
 .custom-scrollbar::-webkit-scrollbar { width: 4px; }
-.custom-scrollbar::-webkit-scrollbar-thumb { background: #E5E7EB; border-radius: 10px; }
-
-h1 { word-spacing: -0.1em; }
-
-input:focus + label {
-  color: #4F46E5;
-}
+.custom-scrollbar::-webkit-scrollbar-thumb { background: var(--scrollbar-thumb); border-radius: 10px; }
+input:focus { border-color: rgba(59, 130, 246, 0.4) !important; }
 </style>

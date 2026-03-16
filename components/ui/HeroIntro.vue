@@ -1,34 +1,19 @@
 <template>
-
-    <!-- Badge -->
-    <div
-      v-if="badge"
-      class="inline-flex items-center gap-2 px-3 py-1 rounded-md bg-blue-600 text-white mb-4 shadow-lg shadow-blue-100"
-    >
-      <span class="text-[9px] font-black uppercase tracking-[0.3em]">
-        {{ badge }}
-      </span>
+  <div>
+    <div class="flex items-center gap-3 mb-4">
+      <div class="h-[1px] w-8" :style="{ backgroundColor: 'var(--border-hover)' }"></div>
+      <span class="text-[10px] font-black uppercase tracking-[0.3em]" :style="{ color: 'var(--text-muted)' }">{{ badge }}</span>
     </div>
-
-    <!-- Title -->
-    <h1
-      class="text-3xl md:text-4xl font-black text-gray-900 tracking-tighter leading-[0.85] mb-4"
-    >
-      <slot name="title" />
+    <h1 class="text-3xl md:text-4xl font-black tracking-tighter leading-[0.9] mb-4" :style="{ color: 'var(--text-primary)' }">
+      <slot name="title"></slot>
     </h1>
-
-    <!-- Description -->
-    <p
-      v-if="description"
-      class="text-gray-400 text-base md:text-lg font-medium max-w-md leading-relaxed"
-    >
-      {{ description }}
-    </p>
+    <p v-if="description" class="text-sm font-medium leading-relaxed max-w-lg" :style="{ color: 'var(--text-secondary)' }">{{ description }}</p>
+  </div>
 </template>
 
 <script setup>
 defineProps({
-  badge: String,
-  description: String
+  badge: { type: String, default: '' },
+  description: { type: String, default: '' },
 })
 </script>
